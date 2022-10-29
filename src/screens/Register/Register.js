@@ -1,15 +1,15 @@
-import React, {Component} from "react";
+import React from "react";
 import  {View, Text} from 'react-native'; 
+import Formulario from "../../components/Formulario/Formulario";
 
-class Register extends Component {
-    render () {
+export default function Register () {
     return (
-        <View style={styles.container}> 
-            <Text>Estructura basica de: Register</Text>
+        <View>
+            <Text>Prueba Formulario</Text>
+            <Formulario/>
         </View>
     )
-    }
 }
 
-export default Register; 
+
 

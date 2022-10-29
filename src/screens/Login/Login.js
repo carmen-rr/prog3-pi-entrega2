@@ -1,14 +1,12 @@
-import React, {Component} from "react";
+import React from "react";
 import  {View, Text} from 'react-native'; 
+import Login from "../../components/FormularioLogin/Login";
 
-class Login extends Component {
-    render () {
+export default function Login () {
     return (
         <View>
-            <Text>Estructura basica de: Login</Text>
+            <Text>Prueba Login</Text>
+            <Login/>
         </View>
     )
-    }
 }
-
-export default Login; 
