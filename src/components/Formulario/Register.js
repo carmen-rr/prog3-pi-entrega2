@@ -57,12 +57,6 @@ class Register extends Component {
                         <Text>Registrarme</Text>
                     </TouchableOpacity>
                 </View>
-                <View>
-                    <Text>Ya tienes una cuenta?</Text>
-                    <TouchableOpacity onPress={()=>{this.props.navigation.navigate('Login')}}>
-                        <Text>Logueate</Text>
-                    </TouchableOpacity>
-                </View>
             </View>
         )
     }
@@ -84,7 +78,3 @@ const styles = StyleSheet.create({
 })
 
 export default Register
-
-
-
-

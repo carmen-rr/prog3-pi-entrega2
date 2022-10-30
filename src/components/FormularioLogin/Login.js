@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Text , View, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
 import {auth} from '../../firebase/config'
 
+
 class Login extends Component{
     
     constructor(){
@@ -39,10 +40,17 @@ class Login extends Component{
                     secureTextEntry={true}
                 />
                 <View>
-                    <TouchableOpacity onPress={()=> this.loguear(this.state.email, this.state.password)}>
+                    <TouchableOpacity onPress={()=> this.props.navigation.navigate('Register')}>
                         <Text>Login</Text>
                     </TouchableOpacity>
                 </View>
+
+                <View>
+                    <TouchableOpacity onPress={()=>this.props.navigation.navigate('Register')}>
+                        <Text>Registrarme</Text>
+                    </TouchableOpacity>
+                </View>
+
             </View>
         )
     }
