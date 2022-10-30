@@ -15,7 +15,7 @@ class Register extends Component {
 
     registraUsuario(email , password, usuario, biografia){
       auth.createUserWithEmailAndPassword(email , password, usuario, biografia)
-      .then(resp => console.log(resp))
+      .then(resp => {this.props.navigation.navigate('Home')})
       .catch(err => console.log(err))
     }
 

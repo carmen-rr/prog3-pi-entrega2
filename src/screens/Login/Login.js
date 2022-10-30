@@ -14,7 +14,7 @@ class Login extends Component{
 
     loguear(email, password){
         auth.signInWithEmailAndPassword(email, password)
-        .then(resp => console.log(resp))
+        .then(resp => {this.props.navigation.navigate('Home')})
         .catch(err => console.log(err))
     }
 
