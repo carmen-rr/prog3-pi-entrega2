@@ -6,6 +6,7 @@ class Register extends Component {
     constructor(){
         super()
         this.state = {
+<<<<<<< HEAD
             nombre: ' ',
             contrasenia: ' ',
             usuario: ' ',
@@ -15,6 +16,18 @@ class Register extends Component {
 
     registraUsuario(email , password, usuario, biografia){
       auth.createUserWithEmailAndPassword(email , password, usuario, biografia)
+=======
+            email: ' ',
+            password: '',
+            /*usuario: '',
+            biografia: '',*/
+        }
+    }
+
+    registraUsuario(email , password){
+        console.log(email, password)
+      auth.createUserWithEmailAndPassword(email , password)
+>>>>>>> 201e75780801862f652a7732f10d3293658cfac8
       .then(resp => {this.props.navigation.navigate('Home')})
       .catch(err => console.log(err))
     }
@@ -27,18 +40,31 @@ class Register extends Component {
                     style={styles.input}
                     placeholder='Escribe tu e-mail'
                     keyboardType='email-address'
+<<<<<<< HEAD
                     onChangeText={ text => this.setState({nombre: text})}
                     value = {this.state.nombre}
+=======
+                    onChangeText={ text => this.setState({email: text})}
+                    value = {this.state.email}
+>>>>>>> 201e75780801862f652a7732f10d3293658cfac8
                 />
                 <TextInput
                     style={styles.input}
                     placeholder='Escribe tu contraseña'
                     keyboardType='default'
+<<<<<<< HEAD
                     onChangeText={ text => this.setState({contrasenia: text})}
                     value = {this.state.contrasenia}
                     secureTextEntry={true}
                 />
                 <TextInput
+=======
+                    onChangeText={ text => this.setState({password: text})}
+                    value = {this.state.password}
+                    secureTextEntry={true}
+                />
+                {/* <TextInput
+>>>>>>> 201e75780801862f652a7732f10d3293658cfac8
                     style={styles.input}
                     placeholder='Nombre de usuario'
                     keyboardType='default'
@@ -51,9 +77,15 @@ class Register extends Component {
                     keyboardType='default'
                     onChangeText={ text => this.setState({biografia: text})}
                     value = {this.state.biografia}
+<<<<<<< HEAD
                 />
                 <View>
                     <TouchableOpacity onPress={()=> this.registraUsuario(this.state.nombre , this.state.contrasenia , this.state.usuario , this.state.biografia)}>
+=======
+                /> */}
+                <View>
+                    <TouchableOpacity onPress={()=> this.registraUsuario(this.state.email , this.state.password)}>
+>>>>>>> 201e75780801862f652a7732f10d3293658cfac8
                         <Text>Registrarme</Text>
                     </TouchableOpacity>
                 </View>
