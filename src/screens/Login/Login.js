@@ -14,18 +14,14 @@ class Login extends Component{
 
     loguear(email, password){
         auth.signInWithEmailAndPassword(email, password)
-<<<<<<< HEAD
         .then(resp => {this.props.navigation.navigate('TabNavigation')})
-=======
-        .then(resp => {this.props.navigation.navigate('Home')})
->>>>>>> 1cf19179a2f11aadb0d93e5bfdd65ed569131039
         .catch(err => console.log(err))
     }
 
     render(){
         return (
-            <View>
-                <Text>Login</Text>
+            <View style={styles.container}>
+                <Text style={styles.text}>Login</Text>
                 <TextInput
                     style={styles.input}
                     keyboardType='email-adress'
@@ -44,13 +40,13 @@ class Login extends Component{
                 />
 
                 <View>
-                    <TouchableOpacity onPress={()=> this.loguear(this.state.email, this.state.password)}>
+                    <TouchableOpacity onPress={()=> this.loguear(this.state.email, this.state.password)} style={styles.to}>
                         <Text>Log In</Text>
                     </TouchableOpacity>
                 </View>
 
                 <View>
-                    <TouchableOpacity onPress={()=> this.props.navigation.navigate('Register')}>
+                    <TouchableOpacity onPress={()=> this.props.navigation.navigate('Register')} style={styles.to}>
                         <Text>Registrate</Text>
                     </TouchableOpacity>
                 </View>
@@ -62,7 +58,33 @@ class Login extends Component{
 
 const styles = StyleSheet.create({
     input:{
-        borderWidth:1
+        borderWidth:2,
+        height:40,
+        width:'90%',
+        borderRadius:20,
+        borderColor:'black',
+        padding:10,
+        margin:10
+    },
+    to:{
+        width:200,
+        height:50,
+        backgroundColor:'deepskyblue',
+        textAlign:'center',
+        borderRadius:40,
+        alignItems:'center',
+        justifyContent:'center',
+        marginTop:10
+    },
+    container:{
+        flex:1,
+        backgroundColor:'orange',
+        alignItems:'center',
+        marginTop:35
+    },
+    text:{
+        color:'black',
+        marginTop:20,
     }
 })
 
