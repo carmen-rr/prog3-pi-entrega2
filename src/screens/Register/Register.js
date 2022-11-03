@@ -22,8 +22,8 @@ class Register extends Component {
 
     render() {
         return(
-            <View>
-                <Text>Formulario</Text>
+            <View style={styles.container}>
+                <Text  style={styles.text}>Formulario</Text>
                 <TextInput
                     style={styles.input}
                     placeholder='Escribe tu e-mail'
@@ -54,14 +54,14 @@ class Register extends Component {
                     value = {this.state.biografia}
                 /> */}
                 <View>
-                    <TouchableOpacity onPress={()=> this.registraUsuario(this.state.email , this.state.password)}>
-                        <Text>Registrarme</Text>
+                    <TouchableOpacity onPress={()=> this.registraUsuario(this.state.email , this.state.password)}  style={styles.to}>
+                        <Text style={styles.text}>Registrarme</Text>
                     </TouchableOpacity>
                 </View>
                 <View>
-                    <Text>Ya tienes una cuenta?</Text>
-                    <TouchableOpacity onPress={()=>{this.props.navigation.navigate('Login')}}>
-                        <Text>Logueate</Text>
+                    <Text  style={styles.text1}>Ya tienes una cuenta?</Text>
+                    <TouchableOpacity onPress={()=>{this.props.navigation.navigate('Login')}}  style={styles.to}>
+                        <Text  style={styles.text}>Logueate</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -71,16 +71,38 @@ class Register extends Component {
 
 const styles = StyleSheet.create({
     
-    /*container:{
-        flex:1,
-        justifyContent:'center',
-        paddingHorizontal:24
-    },
-    Preguntar xq no me funciona
-    */
-    
     input:{
-        borderWidth: 2,
+        borderWidth:2,
+        height:40,
+        width:'90%',
+        borderRadius:20,
+        borderColor:'black',
+        padding:10,
+        margin:10
+    },
+    to:{
+        width:200,
+        height:50,
+        backgroundColor:'deepskyblue',
+        textAlign:'center',
+        borderRadius:40,
+        alignItems:'center',
+        justifyContent:'center',
+        marginTop:10
+    },
+    container:{
+        flex:1,
+        backgroundColor:'orange',
+        alignItems:'center',
+        marginTop:35
+    },
+    text:{
+        color:'black',
+        marginTop:20,
+    },
+    text1:{
+        textAlign:'center',
+        margin:10
     }
 })
 
