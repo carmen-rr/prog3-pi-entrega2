@@ -18,6 +18,14 @@ class Login extends Component{
         .catch(err => console.log(err))
     }
 
+    componentDidMount(){
+        auth.onAuthStateChanged(user => {
+          if(user !== null){
+            this.props.navigation.navigate('TabNavigation')
+          }
+        })
+      }
+
     render(){
         return (
             <View style={styles.container}>
