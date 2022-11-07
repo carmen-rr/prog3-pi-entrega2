@@ -10,27 +10,38 @@ class Register extends Component {
             password: '',
             nombreUsuario: '',
             biografia: '',
+            mensajeError:''
         }
     }
 
-    registraUsuario(email , password, nombreUsuario, biografia){
+   
+
+    registraUsuario(email , password, nombreUsuario, biografia, mensajeError){
+        
+
+if (nombreUsuario.length > 3 ){
         auth.createUserWithEmailAndPassword(email , password)
-        .then(resp =>{ 
+        .then(resp =>
         db.collection('user').add({
           owner:email,
           nombreUsuario: nombreUsuario,
           biografia: biografia,
           createdAt: Date.now(),
         })
-    })
+    )
         .then(resp => {this.props.navigation.navigate('Home')})
-        .catch(err => console.log(err))
+        .catch(err => this.setState({mensajeError: err.message}))
+
+    }else{
+        this.setState({mensajeError: "El usuario debe tener mas de tres caracteres"})
+    }
     }
 
     render() {
         return(
             <View style={styles.container}>
                 <Text  style={styles.text}>Formulario</Text>
+                <Text>{this.state.mensajeError}</Text>
                 <TextInput
                     style={styles.input}
                     placeholder='Escribe tu e-mail'
@@ -38,7 +49,7 @@ class Register extends Component {
                     onChangeText={ text => this.setState({email: text})}
                     value = {this.state.email}
                 />
-                <TextInput
+                               <TextInput
                     style={styles.input}
                     placeholder='Escribe tu contraseña'
                     keyboardType='default'
@@ -50,7 +61,7 @@ class Register extends Component {
                     style={styles.input}
                     placeholder='Nombre de usuario'
                     keyboardType='default'
-                    onChangeText={ text => this.setState({usuario: text})}
+                    onChangeText={ text => this.setState({nombreUsuario: text})}
                     value = {this.state.usuario}
                 />
                 <TextInput
@@ -60,6 +71,7 @@ class Register extends Component {
                     onChangeText={ text => this.setState({biografia: text})}
                     value = {this.state.biografia}
                 /> 
+                
                 <View>
                     <TouchableOpacity onPress={()=> this.registraUsuario(this.state.email , this.state.password, this.state.nombreUsuario, this.state.biografia)}  style={styles.to}>
                         <Text style={styles.text}>Registrarme</Text>
