@@ -1,6 +1,7 @@
-import { Text, View, StyleSheet, TouchableOpacity, TextInput } from 'react-native'
+import { Text, View, StyleSheet, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native'
 import React, { Component } from 'react'
 import { auth } from '../../firebase/config' 
+
 
 
 class Login extends Component{
@@ -8,27 +9,32 @@ class Login extends Component{
         super(props)
         this.state = {
             email:'',
-            password:''
+            password:'',
+            mensajeError:'',
+            validacionCompleta: false
         }
     }
 
     loguear(email, password){
         auth.signInWithEmailAndPassword(email, password)
         .then(resp => {this.props.navigation.navigate('TabNavigation')})
-        .catch(err => console.log(err))
+        .catch(err => this.setState({mensajeError: err.message}))
     }
 
     componentDidMount(){
         auth.onAuthStateChanged(user => {
           if(user !== null){
             this.props.navigation.navigate('TabNavigation')
+          } else {
+            this.setState({validacionCompleta: true})
           }
         })
       }
 
     render(){
-        return (
-            <View style={styles.container}>
+        return ( 
+            this.state.validacionCompleta ?      
+                <View style={styles.container}>
                 <Text style={styles.text}>Login</Text>
                 <TextInput
                     style={styles.input}
@@ -46,9 +52,11 @@ class Login extends Component{
                     value={this.state.password}
                     secureTextEntry={true}
                 />
+                
+                <Text>{this.state.mensajeError}</Text>
 
                 <View>
-                    <TouchableOpacity onPress={()=> this.loguear(this.state.email, this.state.password)} style={styles.to}>
+                    <TouchableOpacity onPress={()=> this.loguear(this.state.email, this.state.password)} style={styles.to} disabled={this.state.email.length >=1 && this.state.password.length >= 1?false:true}>
                         <Text>Log In</Text>
                     </TouchableOpacity>
                 </View>
@@ -60,7 +68,11 @@ class Login extends Component{
                 </View>
             
             </View>
-        )
+                :  
+              <View style={styles.activityContainer}>
+                <ActivityIndicator size='large' color='green'/>
+              </View>
+        )    
     }
 }
 
@@ -93,6 +105,10 @@ const styles = StyleSheet.create({
     text:{
         color:'black',
         marginTop:20,
+    },
+    activityContainer:{
+        justifyContent:'center',
+        flex:1
     }
 })
 
