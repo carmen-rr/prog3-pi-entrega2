@@ -7,7 +7,7 @@ class Post extends Component {
     constructor(){
         super()
         this.state={
-            comment:''
+            textoDescriptivo:''
         }
     }
 
@@ -15,10 +15,10 @@ class Post extends Component {
     sendComment(comment){
         db.collection('posts').add({
             owner: auth.currentUser.email,
-            date: Date.now,
-            comment: this.state.comment,
+            createdAt: Date.now(),
+            textoDescriptivo: this.state.textoDescriptivo,
         })
-        .then(()=> (this.setState({comment: ''}))) //que el comentario vuelva a ser vacio una vez que se envia correctamente
+        .then(()=> (this.setState({textoDescriptivo: ''}))) //que el comentario vuelva a ser vacio una vez que se envia correctamente
         .catch(err => console.log(err))
     }
 
@@ -29,14 +29,14 @@ class Post extends Component {
 
             <TextInput 
                 keyboardType='default'
-                placeholder='Escribi tu comentario...'
-                onChangeText={text => this.setState({comment: text})} //cambia el estado del comentario
+                placeholder='Escribe tu texto descriptivo...'
+                onChangeText={text => this.setState({textoDescriptivo: text})} //cambia el estado del comentario
                 style={styles.input}
-                value={this.state.comment}
+                value={this.state.textoDescriptivo}
             /> 
 
-                <TouchableOpacity onPress={()=> this.sendComment(this.state.comment) }  style={styles.button}>
-                    <Text>Enviar mi comentario</Text>
+                <TouchableOpacity onPress={()=> this.sendComment(this.state.textoDescriptivo) }  style={styles.button}>
+                    <Text>Enviar mi nueva publicación</Text>
                 </TouchableOpacity>
 
                 
