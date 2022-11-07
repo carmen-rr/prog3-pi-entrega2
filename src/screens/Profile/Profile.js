@@ -16,23 +16,6 @@ class Profile extends Component {
     }
 
 
-    //obteniendo los comentarios 
-
-    
-    componentDidMount(){
-        db.collection ('posts').onSnapshot(docs => {console.log(docs)
-        /*
-        let comments = []
-        docs.forEach (doc => {
-            comments.push({
-                 id: doc.id, 
-                data: doc.data(), 
-            })
-         })
-         this.setState({allComments : comments}, () => console.log(this.state.allComments))
-         */
-        })
-    }
     
     render () {
     return (
