@@ -13,17 +13,18 @@ class Register extends Component {
         }
     }
 
-    registraUsuario(email , password,){
-      /*db.collection('info').add({
-        owner:auth.currentUser.email,
-        nombreUsuario: this.state.nombreUsuario,
-        biografia: this.state.biografia,
-        createdAt: Date.now(),
-      })*/
-      
+    registraUsuario(email , password, nombreUsuario, biografia){
         auth.createUserWithEmailAndPassword(email , password)
-      .then(resp => {this.props.navigation.navigate('Home')})
-      .catch(err => console.log(err))
+        .then(resp =>{ 
+        db.collection('user').add({
+          owner:email,
+          nombreUsuario: nombreUsuario,
+          biografia: biografia,
+          createdAt: Date.now(),
+        })
+    })
+        .then(resp => {this.props.navigation.navigate('Home')})
+        .catch(err => console.log(err))
     }
 
     render() {
@@ -45,7 +46,7 @@ class Register extends Component {
                     value = {this.state.password}
                     secureTextEntry={true}
                 />
-                 {/*<TextInput
+                 <TextInput
                     style={styles.input}
                     placeholder='Nombre de usuario'
                     keyboardType='default'
@@ -58,9 +59,9 @@ class Register extends Component {
                     keyboardType='default'
                     onChangeText={ text => this.setState({biografia: text})}
                     value = {this.state.biografia}
-                /> */}
+                /> 
                 <View>
-                    <TouchableOpacity onPress={()=> this.registraUsuario(this.state.email , this.state.password)}  style={styles.to}>
+                    <TouchableOpacity onPress={()=> this.registraUsuario(this.state.email , this.state.password, this.state.nombreUsuario, this.state.biografia)}  style={styles.to}>
                         <Text style={styles.text}>Registrarme</Text>
                     </TouchableOpacity>
                 </View>
@@ -74,6 +75,7 @@ class Register extends Component {
         )
     }
 }
+
 
 const styles = StyleSheet.create({
     
