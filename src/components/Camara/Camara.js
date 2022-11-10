@@ -1,6 +1,7 @@
 import { Camera } from 'expo-camera'
 import React, {Component} from "react";
 import  {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native'; 
+import {storage} from '../../firebase/config'
 
 class Camara extends Component {
     constructor (){
@@ -31,6 +32,28 @@ class Camara extends Component {
         .catch(err => console.log(err))
     }
       
+
+    aceptarImagen(){
+        fetch (this.state.fotoUri)
+        .then(imagenEnBinario => imagenEnBinario.blob())
+        .then(imagen => {
+            const ref = storage.ref(`fotos/${Date.now()}.jpg`)
+            ref.put(imagen)
+            .then (()=> {
+                ref.getDownloadURL()
+                .then((url) => console.log(url))
+                .catch(err => console.log(err))
+            })
+
+        })
+        .catch(err => console.log(err))
+    }
+
+    rechazarImagen(){
+
+    }
+
+
     render () {
     return (
         <View style={styles.container}>
@@ -57,6 +80,12 @@ class Camara extends Component {
                 source={{uri: this.state.fotoUri}}
                 style={styles.imagen}
                 />
+                <TouchableOpacity onPress={()=> this.aceptarImagen ()}>
+                    <Text>Aceptar imagen</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={()=> this.rechazarImagen ()}>
+                    <Text>Rechazar imagen</Text>
+                </TouchableOpacity>
             </View>
             : 
             <Text>Necesito permisos</Text>
