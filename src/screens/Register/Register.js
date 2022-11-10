@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { Text , View, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
 import {db , auth} from '../../firebase/config'
+import * as ImagePicker from 'expo-image-picker'
+import {storage} from '../../firebase/config'
+
 
 class Register extends Component {
     constructor(){
@@ -10,14 +13,34 @@ class Register extends Component {
             password: '',
             nombreUsuario: '',
             biografia: '',
-            mensajeError:''
+            mensajeError:'',
+            profileImage:''
         }
     }
 
-   
+    buscarImagen(){
+        ImagePicker.launchImageLibraryAsync()
+        .then(resp => {
+            fetch(resp.uri)
+            .then(data => data.blob())
+            .then(img => {
+                console.log(storage)
+                const ref = storage.ref(`profilePics/${Date.now()}.jpg`)
+                ref.put(img)
+                .then(()=> {
+                    ref.getDownloadURL()
+                    .then(url => {
+                            this.setState({profileImage:url})
+                        }
+                    )
+                })
+            })
+            .catch(err => console.log(err))
+        })
+        .catch(err => console.log(err))
+    }
 
-    registraUsuario(email , password, nombreUsuario, biografia, mensajeError){
-        
+    registraUsuario(email , password, nombreUsuario, biografia, mensajeError){      
 
 if (nombreUsuario.length > 3 ){
         auth.createUserWithEmailAndPassword(email , password)
@@ -35,7 +58,11 @@ if (nombreUsuario.length > 3 ){
     }else{
         this.setState({mensajeError: "El usuario debe tener mas de tres caracteres"})
     }
+
+    
+
     }
+
 
     render() {
         return(
@@ -73,6 +100,11 @@ if (nombreUsuario.length > 3 ){
                 /> 
                 
                 <View>
+
+                <TouchableOpacity onPress={()=> this.buscarImagen()} style={styles.to}>
+                <Text>Buscar imagen de perfil</Text>
+                </TouchableOpacity>
+
                     <TouchableOpacity onPress={()=> this.registraUsuario(this.state.email , this.state.password, this.state.nombreUsuario, this.state.biografia)}  style={styles.to}>
                         <Text style={styles.text}>Registrarme</Text>
                     </TouchableOpacity>

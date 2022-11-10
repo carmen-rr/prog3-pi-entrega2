@@ -2,12 +2,27 @@ import React, {Component} from "react";
 import  {View, Text, TouchableOpacity, StyleSheet} from 'react-native'; 
 import {auth, db} from '../../firebase/config'
 
+db.collection('users').onSnapshot(
+    docs=>{
+        let usuario = [];
+        docs.forEach( doc =>{
+            usuario.push({
+                id: doc.id,
+                data: doc.data()
+            })
+            this.setState({
+                
+            })
+        })
+    }
+)
+
 class Profile extends Component {
     
     constructor(props){
         super(props)
         this.state = {
-            //allComments = []
+            
         }
     }
     signOut(){
@@ -15,6 +30,7 @@ class Profile extends Component {
         this.props.navigation.navigate('Login')
     }
 
+    
 
     
     render () {
