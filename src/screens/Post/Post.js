@@ -2,30 +2,48 @@ import React, {Component} from "react";
 import {db, auth} from '../../firebase/config'
 import  {View, Text, TextInput, TouchableOpacity, StyleSheet} from 'react-native'; 
 
+import Camara from "../../components/Camara/Camara"; //importando el componente de camara 
+
 
 class Post extends Component {
     constructor(){
         super()
         this.state={
-            textoDescriptivo:''
+            textoDescriptivo:'', 
+            mostrarCamara: true, 
+            fotoUrl: ''
         }
     }
 
     //creando posteos en una coleccion de firebase
-    sendComment(comment){
+    enviarPost(description){
         db.collection('posts').add({
-            owner: auth.currentUser.email,
+            owner:auth.currentUser.email,
             createdAt: Date.now(),
-            textoDescriptivo: this.state.textoDescriptivo,
+            description: description,
+            foto: this.state.fotoUrl
         })
-        .then(()=> (this.setState({textoDescriptivo: ''}))) //que el comentario vuelva a ser vacio una vez que se envia correctamente
+        .then(()=> (this.setState({textoDescriptivo: ''}))) 
         .catch(err => console.log(err))
+   
+    }
+    cuandoSubaLaImagen(url){
+        this.setState({
+            mostrarCamara:false,
+            fotoUrl: url
+        })
     }
 
     render () {
     return (
-        <View>
-            <Text>¡Crea tu posteo!</Text>
+        <View style={styles.container}>
+            {
+                this.state.mostrarCamara ? 
+                <Camara cuandoSubaLaImagen= {(url) => this.cuandoSubaLaImagen(url)}/> 
+                
+                : 
+                
+                <View>
 
             <TextInput 
                 keyboardType='default'
@@ -35,11 +53,16 @@ class Post extends Component {
                 value={this.state.textoDescriptivo}
             /> 
 
-                <TouchableOpacity onPress={()=> this.sendComment(this.state.textoDescriptivo) }  style={styles.button}>
+                <TouchableOpacity onPress={()=> this.enviarPost(this.state.textoDescriptivo) }  style={styles.button}>
                     <Text>Enviar mi nueva publicación</Text>
                 </TouchableOpacity>
 
-                
+
+                </View>
+
+            }
+
+           
         </View>
     )
     }
@@ -47,6 +70,9 @@ class Post extends Component {
 
 
 const styles =StyleSheet.create ({
+    container : {
+        flex:1 
+    },
     input: {
         height: 60, 
         borderWidth: 1, 
