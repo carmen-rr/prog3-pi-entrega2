@@ -10,19 +10,28 @@ class Post extends Component {
         super()
         this.state={
             textoDescriptivo:'', 
-            mostrarCamara: true
+            mostrarCamara: true, 
+            fotoUrl: ''
         }
     }
 
     //creando posteos en una coleccion de firebase
-    sendComment(comment){
+    enviarPost(description){
         db.collection('posts').add({
-            owner: auth.currentUser.email,
+            owner:auth.currentUser.email,
             createdAt: Date.now(),
-            textoDescriptivo: this.state.textoDescriptivo,
+            description: description,
+            foto: this.state.fotoUrl
         })
-        .then(()=> (this.setState({textoDescriptivo: ''}))) //que el comentario vuelva a ser vacio una vez que se envia correctamente
+        .then(()=> (this.setState({textoDescriptivo: ''}))) 
         .catch(err => console.log(err))
+   
+    }
+    cuandoSubaLaImagen(url){
+        this.setState({
+            mostrarCamara:false,
+            fotoUrl: url
+        })
     }
 
     render () {
@@ -30,7 +39,7 @@ class Post extends Component {
         <View style={styles.container}>
             {
                 this.state.mostrarCamara ? 
-                <Camara /> 
+                <Camara cuandoSubaLaImagen= {(url) => this.cuandoSubaLaImagen(url)}/> 
                 
                 : 
                 
@@ -44,7 +53,7 @@ class Post extends Component {
                 value={this.state.textoDescriptivo}
             /> 
 
-                <TouchableOpacity onPress={()=> this.sendComment(this.state.textoDescriptivo) }  style={styles.button}>
+                <TouchableOpacity onPress={()=> this.enviarPost(this.state.textoDescriptivo) }  style={styles.button}>
                     <Text>Enviar mi nueva publicación</Text>
                 </TouchableOpacity>
 

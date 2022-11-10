@@ -2,7 +2,7 @@ import { Camera } from 'expo-camera'
 import React, {Component} from "react";
 import  {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native'; 
 import {storage} from '../../firebase/config'
-
+ 
 class Camara extends Component {
     constructor (){
         super()
@@ -10,6 +10,7 @@ class Camara extends Component {
         this.state = {
             mostrarCamara : false, 
             fotoUri: ''
+            
         }
     }
 
@@ -41,13 +42,14 @@ class Camara extends Component {
             ref.put(imagen)
             .then (()=> {
                 ref.getDownloadURL()
-                .then((url) => console.log(url))
+                .then((url) => this.props.cuandoSubaLaImagen(url))
                 .catch(err => console.log(err))
             })
 
         })
         .catch(err => console.log(err))
     }
+
 
     rechazarImagen(){
 
