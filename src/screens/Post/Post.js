@@ -2,7 +2,10 @@ import React, {Component} from "react";
 import {db, auth} from '../../firebase/config'
 import  {View, Text, TextInput, TouchableOpacity, StyleSheet} from 'react-native'; 
 
+import firebase from "firebase";
+
 import Camara from "../../components/Camara/Camara"; //importando el componente de camara 
+import OnePost from "../../components/OnePost/onePost";
 
 
 class Post extends Component {
@@ -11,7 +14,7 @@ class Post extends Component {
         this.state={
             textoDescriptivo:'', 
             mostrarCamara: true, 
-            fotoUrl: ''
+            fotoUrl: '',
         }
     }
 
@@ -21,6 +24,8 @@ class Post extends Component {
             owner:auth.currentUser.email,
             createdAt: Date.now(),
             description: description,
+            comments: [], 
+            likes: [], 
             foto: this.state.fotoUrl
         })
         .then(()=> (this.setState({textoDescriptivo: ''}))) 
@@ -34,14 +39,18 @@ class Post extends Component {
         })
     }
 
+
+
     render () {
     return (
         <View style={styles.container}>
             {
-                this.state.mostrarCamara ? 
-                <Camara cuandoSubaLaImagen= {(url) => this.cuandoSubaLaImagen(url)}/> 
-                
-                : 
+                 
+                   /* this.state.mostrarCamara ? 
+                 <Camara cuandoSubaLaImagen= {(url) => this.cuandoSubaLaImagen(url)}/> 
+                    
+                    : 
+              */
                 
                 <View>
 
@@ -98,3 +107,29 @@ const styles =StyleSheet.create ({
 
 export default Post; 
 
+/*  return (
+        <View style={styles.container}>
+            {
+                this.state.mostrarCamara ? 
+                <Camara cuandoSubaLaImagen= {(url) => this.cuandoSubaLaImagen(url)}/> 
+                
+                : 
+                
+                <View>
+
+            <TextInput 
+                keyboardType='default'
+                placeholder='Escribe tu texto descriptivo...'
+                onChangeText={text => this.setState({textoDescriptivo: text})} //cambia el estado del comentario
+                style={styles.input}
+                value={this.state.textoDescriptivo}
+            /> 
+
+                <TouchableOpacity onPress={()=> this.enviarPost(this.state.textoDescriptivo) }  style={styles.button}>
+                    <Text>Enviar mi nueva publicación</Text>
+                </TouchableOpacity>
+
+
+                </View>
+
+            } */

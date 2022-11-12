@@ -2,12 +2,15 @@ import React, {Component} from "react";
 import  {View, Text, TouchableOpacity, StyleSheet, FlatList} from 'react-native'; 
 import {auth, db} from '../../firebase/config'
 
+import OnePost from "../../components/OnePost/onePost";
+
+
 class Home extends Component {
 
     constructor(props){
         super(props)
         this.state = {
-            allPosts : []
+            allPosts : [], 
         }
     }
 
@@ -21,11 +24,12 @@ class Home extends Component {
             posts.push({
                 id: doc.id, 
                 data: doc.data(), 
+
             })
          })
          this.setState(
             {
-            allPosts : posts}, () => console.log(this.state.allPosts))
+            allPosts : posts})
          
         })
     }
@@ -33,13 +37,13 @@ class Home extends Component {
 
     render () {
     return (
-        <View>
+        <View style={styles.container1}>
             <Text>Estructura basica de: Home</Text>
 
             <FlatList
                 data={ this.state.allPosts }
                 keyExtractor={ item => item.id.toString() }
-                renderItem={({item}) => <Text>{item.data.textoDescriptivo}</Text>}
+                renderItem={({item}) => <OnePost data={item.data} id={item.id}/>} //RENDERIZA UN COMPONENTE POST que le paso a traves de la prop data toda la info que se guarda en items (data sale del push de doc.data
             />  
         
         </View>
@@ -55,7 +59,12 @@ const styles = StyleSheet.create({
         borderRadius:20,
         backgroundColor:'#dc143c',
         textAlign:'center',
-    }
+    }, 
+    container1:{
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center'
+      },
 
     }
 )
