@@ -12,24 +12,25 @@ class OnePost extends Component {
     constructor(props){
         super(props)
         this.state = {
-           // likesCantidad : props.data.likes.length, //length para tener la cantidad total NO SE PORQUE NO ME LO LEE!!!!!!
-           // commentsCantidad : props.data.comments.length, //length para tener la cantidad total 
+         //likesCantidad : props.data.likes.length, //length para tener la cantidad total NO SE PORQUE NO ME LO LEE!!!!!!
+         //commentsCantidad : props.data.comments.length, //length para tener la cantidad total 
            isMyLike: false, 
 
         }
 
     }
 
-/*
+
     componentDidMount(){
-        let milike = this.props.data.likes.includes(auth.currentUser.email) //includes se fija si esta presente el like 
-        if(milike){
+        //let milike = this.props.data.likes.includes(auth.currentUser.email) //includes se fija si esta presente el like 
+        /*if(milike){
             this.setState({
             isMyLike:true
             })
-        }
+        }*/
     }
-    */
+    
+
     //CUANDO VOY A FIREBASE ME TIENE QUE DECIR QUIEN LIKEO Y QUIEN DISLIKEO
 
     like(){
@@ -67,9 +68,19 @@ class OnePost extends Component {
     }
 
 
+
     render () {
+        console.log(this.props);
         return (
-            <View>
+            <View style={styles.container}>
+
+                <View style={styles.profileName}>
+                    <TouchableOpacity onPress={ ()=> this.props.navigation.navigate('Profile')}>
+                        <Text>Creator: {this.props.data.owner}</Text>
+                    </TouchableOpacity>
+                </View>
+
+
                 <Image style={styles.image} 
                          source={{uri:this.props.data.foto}}
                          resizeMode='contain'/>
@@ -79,6 +90,7 @@ class OnePost extends Component {
                     <Text>{this.state.likesCantidad}</Text>
                 {
                     this.state.isMyLike ?
+                    
                 <TouchableOpacity onPress={()=> this.unlike()}>
                     <FontAwesome name='paw' color='#f08080' size={25}/>
                 </TouchableOpacity>
@@ -91,9 +103,9 @@ class OnePost extends Component {
                     
                 }
                 </View>
-
+              
                 <View>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={ ()=> this.props.navigation.navigate('Comments', {postData: this.props.data, postId: this.props.id})} style={styles.button}>
                         <Text>Agregar comment</Text>
                     </TouchableOpacity>
                 </View>
@@ -106,10 +118,25 @@ class OnePost extends Component {
     }
 
     const styles = StyleSheet.create({
+        container: {
+            backgroundColor: '#fffff0',
+        },
+        profileName: {
+            fontWeight: 'bold'        },
         image: {
          height: 400,
          width: 400
        },
+       button: {
+        borderColor:'black',
+        backgroundColor:'#48d1cc',
+        textAlign:'right',
+        alignItems: 'center',
+        padding:5,
+        borderColor:'black',
+        borderWidth: 2,
+
+       }
      })
 
      

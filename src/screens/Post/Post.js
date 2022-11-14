@@ -107,29 +107,3 @@ const styles =StyleSheet.create ({
 
 export default Post; 
 
-/*  return (
-        <View style={styles.container}>
-            {
-                this.state.mostrarCamara ? 
-                <Camara cuandoSubaLaImagen= {(url) => this.cuandoSubaLaImagen(url)}/> 
-                
-                : 
-                
-                <View>
-
-            <TextInput 
-                keyboardType='default'
-                placeholder='Escribe tu texto descriptivo...'
-                onChangeText={text => this.setState({textoDescriptivo: text})} //cambia el estado del comentario
-                style={styles.input}
-                value={this.state.textoDescriptivo}
-            /> 
-
-                <TouchableOpacity onPress={()=> this.enviarPost(this.state.textoDescriptivo) }  style={styles.button}>
-                    <Text>Enviar mi nueva publicación</Text>
-                </TouchableOpacity>
-
-
-                </View>
-
-            } */

@@ -6,6 +6,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from '../screens/Login/Login';
 import Register from '../screens/Register/Register';
 import Comments from '../screens/Comments/Comments'
+import Profile from '../screens/Profile/Profile'
+import Home from '../screens/Home/Home'
 
 import TabNavigation from './TabNavigation';
 
@@ -37,13 +39,25 @@ function MainNavigation(){
             headerShown: false
           }}
           />
-          {/* <Stack.Screen 
+           <Stack.Screen 
           name='Comments' 
           component={Comments}
+
+          />
+          { <Stack.Screen 
+          name='Profile' 
+          component={Profile}
           options={{
             headerShown: false
           }}
-          />*/}
+          />}
+           { <Stack.Screen 
+          name='Home' 
+          component={Home}
+          options={{
+            headerShown: false
+          }}
+          />}
     
           {/*<Stack.Screen name='Login'>
           {(props) => <Login {...props} metodo={metodo} />}

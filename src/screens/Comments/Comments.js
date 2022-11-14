@@ -1,19 +1,31 @@
-/*import React, {Component} from "react";
+import React, {Component} from "react";
 import {db, auth} from '../../firebase/config'
 import  {View, Text, TextInput, TouchableOpacity, StyleSheet} from 'react-native'; 
 
 
 class Comments extends Component {
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state={
-            textoDescriptivo:''
+            id:'',
+            comments:[]
         }
+       
+    }
+
+
+    componentDidMount() {
+        this.setState({
+            id: this.props.route.params.postId,
+            comments: this.props.route.params.postData.comments,
+        }, console.log(this.state))    
     }
 
     //creando posteos en una coleccion de firebase
     sendComment(comment){
-        db.collection('posts').add({
+        db.collection('posts')
+        .doc(this.props.route.params.id)
+        .update({
             owner: auth.currentUser.email,
             createdAt: Date.now(),
             textoDescriptivo: this.state.textoDescriptivo,
@@ -23,13 +35,14 @@ class Comments extends Component {
     }
 
     render () {
+        console.log(this.state)
     return (
         <View>
-            <Text>¡Crea tu posteo!</Text>
+            <Text>¡Add comment!</Text>
 
-            <TextInput 
+           {/* <TextInput 
                 keyboardType='default'
-                placeholder='Escribe tu texto descriptivo...'
+                placeholder='Escribe tu comment...'
                 onChangeText={text => this.setState({textoDescriptivo: text})} //cambia el estado del comentario
                 style={styles.input}
                 value={this.state.textoDescriptivo}
@@ -38,6 +51,9 @@ class Comments extends Component {
                 <TouchableOpacity onPress={()=> this.sendComment(this.state.textoDescriptivo) }  style={styles.button}>
                     <Text>Enviar mi comentario</Text>
                 </TouchableOpacity>
+
+    */}
+    
 
                 
         </View>
@@ -67,7 +83,16 @@ const styles =StyleSheet.create ({
         textAlign:'center',
         
         
+    }, 
+    backHome: {
+        padding:10,
+        margin: 5,
+        borderColor:'black',
+        borderWidth: 2,
+        borderRadius:20,
+        backgroundColor:'#dc143c',
+        textAlign:'center',
     }
 })
 
-export default Comments; */
+export default Comments; 

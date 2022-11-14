@@ -43,7 +43,7 @@ class Home extends Component {
             <FlatList
                 data={ this.state.allPosts }
                 keyExtractor={ item => item.id.toString() }
-                renderItem={({item}) => <OnePost data={item.data} id={item.id}/>} //RENDERIZA UN COMPONENTE POST que le paso a traves de la prop data toda la info que se guarda en items (data sale del push de doc.data
+                renderItem={({item}) => <OnePost navigation={this.props.navigation} data={item.data} id={item.id}/>} //RENDERIZA UN COMPONENTE POST que le paso a traves de la prop data toda la info que se guarda en items (data sale del push de doc.data
             />  
         
         </View>
