@@ -50,6 +50,7 @@ if (nombreUsuario.length > 3 ){
           nombreUsuario: nombreUsuario,
           biografia: biografia,
           createdAt: Date.now(),
+          profileImage: this.state.profileImage
         })
     )
         .then(resp => {this.props.navigation.navigate('Home')})
