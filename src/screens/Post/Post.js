@@ -46,11 +46,11 @@ class Post extends Component {
         <View style={styles.container}>
             {
                  
-                   /* this.state.mostrarCamara ? 
+                    this.state.mostrarCamara ? 
                  <Camara cuandoSubaLaImagen= {(url) => this.cuandoSubaLaImagen(url)}/> 
                     
                     : 
-              */
+              
                 
                 <View>
 

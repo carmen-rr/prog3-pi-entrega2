@@ -1,10 +1,11 @@
 import React, {Component} from "react";
-import  {View, Text, TouchableOpacity} from 'react-native'; 
+import  {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native'; 
 import {FontAwesome} from '@expo/vector-icons'
 import { Ionicons } from '@expo/vector-icons'; 
 import {db, auth} from '../../firebase/config'
 
 import firebase from "firebase"; //modulo
+import Camara from "../Camara/Camara";
 
 
 class OnePost extends Component {
@@ -69,6 +70,10 @@ class OnePost extends Component {
     render () {
         return (
             <View>
+                <Image style={styles.image} 
+                         source={{uri:this.props.data.foto}}
+                         resizeMode='contain'/>
+
                 <Text>{this.props.data.description}</Text>
                 <View>
                     <Text>{this.state.likesCantidad}</Text>
@@ -86,6 +91,12 @@ class OnePost extends Component {
                     
                 }
                 </View>
+
+                <View>
+                    <TouchableOpacity>
+                        <Text>Agregar comment</Text>
+                    </TouchableOpacity>
+                </View>
     
     
                 
@@ -94,5 +105,13 @@ class OnePost extends Component {
         }
     }
 
+    const styles = StyleSheet.create({
+        image: {
+         height: 400,
+         width: 400
+       },
+     })
+
+     
 export default OnePost; 
 

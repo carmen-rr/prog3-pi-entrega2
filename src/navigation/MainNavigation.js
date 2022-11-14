@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Login from '../screens/Login/Login';
 import Register from '../screens/Register/Register';
+import Comments from '../screens/Comments/Comments'
 
 import TabNavigation from './TabNavigation';
 
@@ -28,6 +29,7 @@ function MainNavigation(){
             headerShown: false
           }}
           />
+         
          <Stack.Screen
           name='TabNavigation'
           component={TabNavigation}
@@ -35,6 +37,13 @@ function MainNavigation(){
             headerShown: false
           }}
           />
+          {/* <Stack.Screen 
+          name='Comments' 
+          component={Comments}
+          options={{
+            headerShown: false
+          }}
+          />*/}
     
           {/*<Stack.Screen name='Login'>
           {(props) => <Login {...props} metodo={metodo} />}
