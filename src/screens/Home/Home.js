@@ -18,7 +18,7 @@ class Home extends Component {
 
     
     componentDidMount(){
-        db.collection('posts').onSnapshot(docs => {
+        db.collection('posts').orderBy('createdAt', 'desc').onSnapshot(docs => {
         let posts = []
         docs.forEach (doc => {
             posts.push({
@@ -38,7 +38,7 @@ class Home extends Component {
     render () {
     return (
         <View style={styles.container1}>
-            <Text>Estructura basica de: Home</Text>
+            <Text>Welcome Home</Text>
 
             <FlatList
                 data={ this.state.allPosts }

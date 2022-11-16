@@ -12,9 +12,10 @@ class OnePost extends Component {
     constructor(props){
         super(props)
         this.state = {
-         //likesCantidad : props.data.likes.length, //length para tener la cantidad total NO SE PORQUE NO ME LO LEE!!!!!!
-         //commentsCantidad : props.data.comments.length, //length para tener la cantidad total 
+         likesCantidad : props.data.likes.length, //length para tener la cantidad total NO SE PORQUE NO ME LO LEE!!!!!!
+         commentsCantidad : props.data.comments.length, //length para tener la cantidad total 
            isMyLike: false, 
+        
 
         }
 
@@ -22,12 +23,12 @@ class OnePost extends Component {
 
 
     componentDidMount(){
-        //let milike = this.props.data.likes.includes(auth.currentUser.email) //includes se fija si esta presente el like 
-        /*if(milike){
+        let milike = this.props.data.likes.includes(auth.currentUser.email) //includes se fija si esta presente el like 
+        if(milike){
             this.setState({
             isMyLike:true
             })
-        }*/
+        }
     }
     
 
@@ -105,6 +106,7 @@ class OnePost extends Component {
                 </View>
               
                 <View>
+                <Text>Cantidad de comments : {this.state.commentsCantidad}</Text>
                 {/*touchable opacity que se encarga de hacer la navegacion, este ya tiene las props de navegacion que trae de home */}
                     <TouchableOpacity onPress={ ()=> this.props.navigation.navigate('Comments', {postData: this.props.data, postId: this.props.id})} style={styles.button}>
                         <Text>Agregar comment</Text>

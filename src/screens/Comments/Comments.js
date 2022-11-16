@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {db, auth} from '../../firebase/config'
-import  {View, Text, TextInput, TouchableOpacity, StyleSheet} from 'react-native'; 
+import  {View, Text, TextInput, TouchableOpacity, StyleSheet, FlatList} from 'react-native'; 
 import firebase from "firebase";
 
 
@@ -51,6 +51,13 @@ class Comments extends Component {
         <View>
             <Text>¡Add comment!</Text>
 
+            <FlatList
+                data={ this.state.data.comments } //array que recorre los comments :)
+                keyExtractor={ item => item.createdAt.toString() }
+                renderItem={({item}) => <Text>{item.owner} : {item.comments}</Text>} //RENDERIZA UN COMPONENTE POST que le paso a traves de la prop data toda la info que se guarda en items (data sale del push de doc.data
+    /> 
+
+
             <TextInput 
                 keyboardType='default'
                 placeholder='Escribe tu comment...'
@@ -59,7 +66,7 @@ class Comments extends Component {
                 value={this.state.comments}
             /> 
 
-<TouchableOpacity onPress={()=> this.sendComment(this.state.comments, this.state.id) }  style={styles.button}>
+                <TouchableOpacity onPress={()=> this.sendComment(this.state.comments, this.state.id) }  style={styles.button}>
                     <Text>Enviar mi comentario</Text>
                 </TouchableOpacity>
 
