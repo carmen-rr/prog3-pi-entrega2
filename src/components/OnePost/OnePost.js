@@ -105,6 +105,7 @@ class OnePost extends Component {
                 </View>
               
                 <View>
+                {/*touchable opacity que se encarga de hacer la navegacion, este ya tiene las props de navegacion que trae de home */}
                     <TouchableOpacity onPress={ ()=> this.props.navigation.navigate('Comments', {postData: this.props.data, postId: this.props.id})} style={styles.button}>
                         <Text>Agregar comment</Text>
                     </TouchableOpacity>
