@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import  {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native'; 
+import  {View, Text, TouchableOpacity, StyleSheet, Image, FlatList} from 'react-native'; 
 import {FontAwesome} from '@expo/vector-icons'
 import { Ionicons } from '@expo/vector-icons'; 
 import {db, auth} from '../../firebase/config'
@@ -93,13 +93,13 @@ class OnePost extends Component {
                     this.state.isMyLike ?
                     
                 <TouchableOpacity onPress={()=> this.unlike()}>
-                    <FontAwesome name='paw' color='#f08080' size={25}/>
+                    <FontAwesome name='paw' color='#c71585' size={25}/>
                 </TouchableOpacity>
     
                 :
     
                 <TouchableOpacity onPress={()=> this.like()}>
-                    <Ionicons name="paw-outline" size={25} color="#f08080" />
+                    <Ionicons name="paw-outline" size={25} color="#c71585" />
                 </TouchableOpacity>
                     
                 }
@@ -111,6 +111,8 @@ class OnePost extends Component {
                     <TouchableOpacity onPress={ ()=> this.props.navigation.navigate('Comments', {postData: this.props.data, postId: this.props.id})} style={styles.button}>
                         <Text>Agregar comment</Text>
                     </TouchableOpacity>
+
+               
                 </View>
     
     
@@ -122,7 +124,11 @@ class OnePost extends Component {
 
     const styles = StyleSheet.create({
         container: {
-            backgroundColor: '#fffff0',
+            backgroundColor: '#d2b48c',
+             borderWidth: 1, 
+            margin: 5,
+              borderRadius: 10,
+              padding: 10
         },
         profileName: {
             fontWeight: 'bold'        },
@@ -132,12 +138,16 @@ class OnePost extends Component {
        },
        button: {
         borderColor:'black',
-        backgroundColor:'#48d1cc',
+        backgroundColor:'#3cb371',
         textAlign:'right',
         alignItems: 'center',
         padding:5,
         borderColor:'black',
         borderWidth: 2,
+        borderRadius: 10,
+        margin: 2,
+
+
 
        }
      })

@@ -15,6 +15,7 @@ class Comments extends Component {
        
     }
 
+    //orderBy('createdAt', 'desc').
 
     componentDidMount() {
         db.collection('posts')
@@ -84,9 +85,11 @@ const styles =StyleSheet.create ({
     input: {
         height: 60, 
         borderWidth: 1, 
-        margin: 5,
+        margin: 10,
         borderRadius: 10,
         textAlign:'center',
+        backgroundColor:`#d2b48c`,
+
 
 
 
@@ -94,11 +97,13 @@ const styles =StyleSheet.create ({
     },
     button: {
         padding:10,
-        borderColor:`#5f9ea0`,
         borderWidth: 2,
-        borderRadius:20,
-        backgroundColor:`#5f9ea0`,
+        borderRadius:10,
+        backgroundColor:`#66cdaa`,
         textAlign:'center',
+        borderColor:'black',
+        margin: 10
+
         
         
     }, 
