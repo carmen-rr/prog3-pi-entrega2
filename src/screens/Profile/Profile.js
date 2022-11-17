@@ -20,6 +20,15 @@ class Profile extends Component {
         this.props.navigation.navigate('Login')
     }
 
+    eliminar(){
+        db.collection('users').doc
+        .delete(
+
+        ).then(()=> 
+        this.props.navigation.navigate('Register'))
+        
+    }
+
  
     componentDidMount(){
         db.collection('posts').where('owner', '==', auth.currentUser.email).onSnapshot(docs => {
@@ -79,6 +88,7 @@ class Profile extends Component {
     render () {
     return (
 
+        
         <View>
             
             <Text>{auth.currentUser.email}</Text>
@@ -89,6 +99,11 @@ class Profile extends Component {
             <TouchableOpacity onPress={ () => this.signOut()} style={styles.button}>
                 <Text>Cerrar sesión</Text>
             </TouchableOpacity>
+
+            <TouchableOpacity onPress={ () => this.eliminar()} style={styles.button}>
+                <Text>Eliminar perfil</Text>
+            </TouchableOpacity>
+
             <FlatList
                 data={ this.state.allPosts }
                 keyExtractor={ item => item.id.toString() }
