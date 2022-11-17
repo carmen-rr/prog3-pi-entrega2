@@ -10,12 +10,15 @@ class Comments extends Component {
         this.state={
             id:'',
             comments:'', 
-            data: {}
+            data: {}, 
+            mensajeComentario: false, 
+           // commentsCantidad : props.postData.comments.length, //length para tener la cantidad total 
+
+
+
         }
        
     }
-
-    //orderBy('createdAt', 'desc').
 
     componentDidMount() {
         db.collection('posts')
@@ -30,7 +33,11 @@ class Comments extends Component {
 
     //como comments es un array tengo que estar agregandole esos elementos al array 
     //ESTA MUY MAL LA PRACTICA DE NO PONER UN PARAMETRO EN SEND COMMENT?
+
+    
     sendComment(){
+
+        if (this.state.comments != ''){
         db.collection('posts')
         .doc(this.state.id)
         .update({
@@ -45,18 +52,28 @@ class Comments extends Component {
         .then(()=> (this.setState({comments: ''}))) //que el comentario vuelva a ser vacio una vez que se envia correctamente
         .catch(err => console.log(err))
     }
+    }
 
+   
     render () {
         console.log(this.state)
+        console.log(this.state?.data?.comments?.length) //estos signos no se le ponen a la ultima propiedad, este dato puede estar o no pero si no estan no rompen 
     return (
         <View>
-            <Text>¡Add comment!</Text>
-
+          
+        {
+            this.state?.data?.comments?.length >= 1 ? //si data tiene la propiedad comments renderizame la flatlist
+            <View>
+            <Text>¡Agrega tu comment!</Text>
             <FlatList
-                data={ this.state.data.comments } //array que recorre los comments :)
-                keyExtractor={ item => item.createdAt.toString() }
-                renderItem={({item}) => <Text>{item.owner} : {item.comments}</Text>} //RENDERIZA UN COMPONENTE POST que le paso a traves de la prop data toda la info que se guarda en items (data sale del push de doc.data
-    /> 
+            data={ this.state.data.comments.sort((a,b) => a.createdAt - b.createdAt).reverse()} //sort ordena de menor a mayor los elementos de un arrya, array que recorre los comments :)
+            keyExtractor={ item => item.createdAt.toString() }
+            renderItem={({item}) => <Text>{item.owner} : {item.comments}</Text>} //RENDERIZA UN COMPONENTE POST que le paso a traves de la prop data toda la info que se guarda en items (data sale del push de doc.data
+        />
+        </View>
+        : <Text>¡Aún no hay comentarios. Sé el primero en opinar!</Text>
+    }
+            
 
 
             <TextInput 
