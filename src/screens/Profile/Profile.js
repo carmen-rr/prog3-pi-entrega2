@@ -91,8 +91,10 @@ class Profile extends Component {
         
         <View>
             
+            <Text>{this.state.infoUser[0]?.data?.nombreUsuario}</Text>
             <Text>{auth.currentUser.email}</Text>
-            <Text>{this.state.infoUser[0]?.data?.biografia}</Text>   
+            <Text>{this.state.infoUser[0]?.data?.biografia}</Text> 
+             
             
 
             
