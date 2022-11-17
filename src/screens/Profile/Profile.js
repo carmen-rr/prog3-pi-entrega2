@@ -1,69 +1,102 @@
 import React, {Component} from "react";
 import  {View, Text, TouchableOpacity, StyleSheet, FlatList} from 'react-native'; 
 import {auth, db} from '../../firebase/config'
+import OnePost from "../../components/OnePost/onePost";
 
-db.collection('users').onSnapshot(
-    docs=>{
-        let usuario = [];
-        docs.forEach( doc =>{
-            usuario.push({
-                id: doc.id,
-                data: doc.data()
-            })
-            this.setState({
-                
-            })
-        })
-    }
-)
+
 
 class Profile extends Component {
-    
     constructor(props){
-        super(props)
-        this.state = {
-            allPosts : []
-        
-        }
+      super(props)
+      this.state ={
+        allPosts: [],
+        infoUser: [],
+      }
     }
+
+
     signOut(){
         auth.signOut()
         this.props.navigation.navigate('Login')
     }
 
-    //Que se vean todos los posts del usuario
+ 
     componentDidMount(){
-        db.collection('posts').onSnapshot(docs => {
-        let posts = []
-        docs.forEach (doc => {
+        db.collection('posts').where('owner', '==', auth.currentUser.email).onSnapshot(docs => {
+          let posts = []
+          docs.forEach(doc => {
             posts.push({
-                id: doc.id, 
-                data: doc.data(), 
+              id: doc.id,
+              data: doc.data()
             })
-         })
-         this.setState(
-            {
-            allPosts : posts}, () => console.log(this.state.allPosts))
-            
+          })
+          this.setState({
+            allPosts: posts
+          })
+          
         })
-    }
+    
+        db.collection('user').where('owner', '==', auth.currentUser.email).onSnapshot(docs => {
+          let users = []
+          docs.forEach(doc => {
+            users.push({
+              id: doc.id,
+              data: doc.data()
+            })
+          })
+    
+          this.setState({
+            infoUser: users,
+          },
+          () => console.log(this.state.infoUser[0].data)
+          )
+        })
+    
+        
+      }
+    
+      
 
+    componentWillUnmount(){
+    db.collection('users').onSnapshot(
+        docs=>{
+            let usuario = [];
+            docs.forEach( doc =>{
+                usuario.push({
+                    id: doc.id,
+                    data: doc.data()
+                })
+                this.setState({
+                    
+                })
+            })
+        }
+    )
+    }
     
 
     
     render () {
     return (
+
         <View>
-            <Text>Estructura basica de: Profile</Text>
+            
+            <Text>{auth.currentUser.email}</Text>
+            <Text>{this.state.infoUser[0]?.data?.biografia}</Text>   
+            
+
+            
             <TouchableOpacity onPress={ () => this.signOut()} style={styles.button}>
                 <Text>Cerrar sesión</Text>
             </TouchableOpacity>
-
             <FlatList
                 data={ this.state.allPosts }
                 keyExtractor={ item => item.id.toString() }
-                renderItem={({item}) => <Text>{item.data.textoDescriptivo}</Text>}
+                renderItem={({item}) => <OnePost data={item.data} id={item.id}/>} //RENDERIZA UN COMPONENTE POST que le paso a traves de la prop data toda la info que se guarda en items (data sale del push de doc.data
             /> 
+            
+
+            
 
         </View>
     )
@@ -78,11 +111,16 @@ const styles = StyleSheet.create({
         borderRadius:20,
         backgroundColor:'#dc143c',
         textAlign:'center',
-
-
-
-    }
+    },
+    image: {
+        height: 400,
+        width: 400
+      },
+   
+    
 })
+
+
 
 export default Profile; 
 

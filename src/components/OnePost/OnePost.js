@@ -16,7 +16,7 @@ class OnePost extends Component {
          commentsCantidad : props.data.comments.length, //length para tener la cantidad total 
            isMyLike: false, 
         
-
+            perfilRedirect: 'FriendProfile'
         }
 
     }
@@ -27,6 +27,12 @@ class OnePost extends Component {
         if(milike){
             this.setState({
             isMyLike:true
+            })
+        }
+
+        if ( this.props.data.owner == auth.currentUser.email){
+            this.setState({
+                perfilRedirect: 'Profile'
             })
         }
     }
@@ -77,9 +83,8 @@ class OnePost extends Component {
 
                 <View style={styles.profileName}>
                     <TouchableOpacity onPress={ ()=> this.props.navigation.navigate(
-                        'HomeNavigation' , 
+                        this.state.perfilRedirect, 
                         {
-                            screen:'FriendProfile',
                             params:{
                                 email: this.props.data.owner
                             }
