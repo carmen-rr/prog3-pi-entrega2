@@ -80,19 +80,12 @@ class Profile extends Component {
     return (
 
         <View>
-            <Text>Estructura basica de: Profile</Text>
+            
             <Text>{auth.currentUser.email}</Text>
-            <FlatList
-            data={ this.state.infoUser }
-            keyExtractor={ item => item.id.toString() }
-            renderItem={({item}) => 
+            <Text>{this.state.infoUser[0]?.data?.biografia}</Text>   
             
-            <Text>{item.data.biografia}  </Text>
-            
-            
-            }
 
-            />
+            
             <TouchableOpacity onPress={ () => this.signOut()} style={styles.button}>
                 <Text>Cerrar sesión</Text>
             </TouchableOpacity>
