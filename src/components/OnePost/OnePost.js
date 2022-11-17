@@ -76,7 +76,15 @@ class OnePost extends Component {
             <View style={styles.container}>
 
                 <View style={styles.profileName}>
-                    <TouchableOpacity onPress={ ()=> this.props.navigation.navigate('Profile')}>
+                    <TouchableOpacity onPress={ ()=> this.props.navigation.navigate(
+                        'HomeNavigation' , 
+                        {
+                            screen:'FriendProfile',
+                            params:{
+                                email: this.props.data.owner
+                            }
+                        }
+                        )}>
                         <Text>Creator: {this.props.data.owner}</Text>
                     </TouchableOpacity>
                 </View>

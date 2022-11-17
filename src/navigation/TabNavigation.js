@@ -5,6 +5,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import {FontAwesome5} from '@expo/vector-icons'
 
 import Home from '../screens/Home/Home';
+import HomeNavigation from './HomeNavigation';
 import MenuNav from '../screens/MenuNav/MenuNav';
 import Post from '../screens/Post/Post';
 import Profile from '../screens/Profile/Profile';
@@ -18,8 +19,8 @@ export default function TabNavigation() {
     return (
         <Tab.Navigator>
             <Tab.Screen 
-            name='Home' 
-            component={Home}
+            name='HomeNavigation' 
+            component={HomeNavigation}
             options ={{
                 tabBarIcon : () => <FontAwesome5 name='home' size={28} color='#2e8b57' />
             }}
