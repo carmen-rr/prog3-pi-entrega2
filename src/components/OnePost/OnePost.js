@@ -15,6 +15,7 @@ class OnePost extends Component {
          likesCantidad : props.data.likes.length, //length para tener la cantidad total NO SE PORQUE NO ME LO LEE!!!!!!
          commentsCantidad : props.data.comments.length, //length para tener la cantidad total 
            isMyLike: false, 
+           comments: props.data.comments,
         
             perfilRedirect: 'FriendProfile'
         }
@@ -128,7 +129,11 @@ class OnePost extends Component {
                
                 </View>
     
-    
+                <FlatList
+                data={ this.state.comments}
+                keyExtractor={ item => item.comments.toString() }
+                renderItem={({item}) => <Text> {item.comments}</Text>} //RENDERIZA UN COMPONENTE POST que le paso a traves de la prop data toda la info que se guarda en items (data sale del push de doc.data
+            /> 
                 
             </View>
         )
