@@ -20,14 +20,14 @@ class Profile extends Component {
         this.props.navigation.navigate('Login')
     }
 
-    eliminar(){
+   /* eliminar(){
         db.collection('users').doc
         .delete(
 
         ).then(()=> 
         this.props.navigation.navigate('Register'))
         
-    }
+    }*/
 
  
     componentDidMount(){
@@ -102,9 +102,9 @@ class Profile extends Component {
                 <Text>Cerrar sesión</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={ () => this.eliminar()} style={styles.button}>
+           {/* <TouchableOpacity onPress={ () => this.eliminar()} style={styles.button}>
                 <Text>Eliminar perfil</Text>
-            </TouchableOpacity>
+    </TouchableOpacity>*/}
 
             <FlatList
                 data={ this.state.allPosts }
