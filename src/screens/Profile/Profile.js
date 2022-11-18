@@ -93,7 +93,8 @@ class Profile extends Component {
             
             <Text>{this.state.infoUser[0]?.data?.nombreUsuario}</Text>
             <Text>{auth.currentUser.email}</Text>
-            <Text>{this.state.infoUser[0]?.data?.biografia}</Text> 
+            <Text>{this.state.infoUser[0]?.data?.biografia}</Text>
+            <Text>{this.state.allPosts.length}</Text>
             <Image style={styles.image} 
                          source={{uri:this.state.infoUser[0]?.data?.profileImage}}
                          resizeMode='contain'/>
@@ -131,10 +132,11 @@ const styles = StyleSheet.create({
         textAlign:'center',
     },
     image: {
-        height: 400,
-        width: 400
+        height: 80,
+        width: 80,
+        borderRadius:400000000,
       },
-    container1:{
+    container:{
         flex:1,
         justifyContent:'center',
         alignItems:'center'
