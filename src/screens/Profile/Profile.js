@@ -40,8 +40,10 @@ class Profile extends Component {
             })
           })
           this.setState({
-            allPosts: posts
-          })
+            allPosts: posts,
+          },
+          () => console.log(this.state.allPosts)
+          )
           
         })
     
@@ -57,10 +59,9 @@ class Profile extends Component {
           this.setState({
             infoUser: users,
           },
-          () => console.log(this.state.infoUser[0].data)
+          () => console.log(this.state.infoUser)
           )
         })
-    
         
       }
     
@@ -94,7 +95,7 @@ class Profile extends Component {
             <Text>{this.state.infoUser[0]?.data?.nombreUsuario}</Text>
             <Text>{auth.currentUser.email}</Text>
             <Text>{this.state.infoUser[0]?.data?.biografia}</Text> 
-             
+            
             
 
             
