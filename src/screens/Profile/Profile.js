@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import  {View, Text, TouchableOpacity, StyleSheet, FlatList} from 'react-native'; 
+import  {View, Text, TouchableOpacity, StyleSheet, FlatList, Image} from 'react-native'; 
 import {auth, db} from '../../firebase/config'
 import OnePost from "../../components/OnePost/onePost";
 
@@ -84,21 +84,21 @@ class Profile extends Component {
     )
     }
     
-
     
     render () {
     return (
 
         
-        <View>
+        <View style={styles.container}>
             
             <Text>{this.state.infoUser[0]?.data?.nombreUsuario}</Text>
             <Text>{auth.currentUser.email}</Text>
             <Text>{this.state.infoUser[0]?.data?.biografia}</Text> 
+            <Image style={styles.image} 
+                         source={{uri:this.state.infoUser[0]?.data?.profileImage}}
+                         resizeMode='contain'/>
             
-            
-
-            
+                  
             <TouchableOpacity onPress={ () => this.signOut()} style={styles.button}>
                 <Text>Cerrar sesión</Text>
             </TouchableOpacity>
@@ -133,6 +133,11 @@ const styles = StyleSheet.create({
     image: {
         height: 400,
         width: 400
+      },
+    container1:{
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center'
       },
    
     
