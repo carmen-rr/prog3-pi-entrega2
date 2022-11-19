@@ -52,8 +52,10 @@ class Camara extends Component {
 
 
     rechazarImagen(){
-        this.props.navigation.navigate('Post')
-    }
+        this.setState({
+            mostrarCamara: true,
+            fotoUri: '',
+        })    }
 
 
     render () {

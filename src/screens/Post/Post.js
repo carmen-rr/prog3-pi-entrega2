@@ -28,7 +28,9 @@ class Post extends Component {
             likes: [], 
             foto: this.state.fotoUrl
         })
-        .then(()=> (this.setState({textoDescriptivo: ''}))) 
+        .then(()=> (this.setState({textoDescriptivo: '', 
+        mostrarCamara: true, //para que vuelva a posts desde sacar foto ;)
+        fotoUri: '',}))) 
         .catch(err => console.log(err))
    
     }
