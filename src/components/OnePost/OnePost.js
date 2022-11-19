@@ -130,7 +130,7 @@ class OnePost extends Component {
                 </View>
     
                 <FlatList
-                data={ this.state.comments}
+                data={ this.state.comments.slice(0,4)}
                 keyExtractor={ item => item.comments.toString() }
                 renderItem={({item}) => <Text> {item.comments}</Text>} //RENDERIZA UN COMPONENTE POST que le paso a traves de la prop data toda la info que se guarda en items (data sale del push de doc.data
             /> 
@@ -142,22 +142,27 @@ class OnePost extends Component {
 
     const styles = StyleSheet.create({
         container: {
-            backgroundColor: '#d2b48c',
-             borderWidth: 1, 
-            margin: 5,
+            backgroundColor: '#8fbc8f',
+             margin: 5,
               borderRadius: 10,
-              padding: 10
+              padding: 5, 
+
+
         },
         profileName: {
-            fontWeight: 'bold'        },
+            fontWeight: 'bold',
+
+        },
+
         image: {
          height: 400,
-         width: 400
+         width: 400, 
+         alignItems: 'center',
+
        },
        button: {
         borderColor:'black',
         backgroundColor:'#3cb371',
-        textAlign:'right',
         alignItems: 'center',
         padding:5,
         borderColor:'black',
@@ -167,7 +172,8 @@ class OnePost extends Component {
 
 
 
-       }
+       }, 
+      
      })
 
      

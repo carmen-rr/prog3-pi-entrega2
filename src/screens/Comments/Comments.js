@@ -64,8 +64,8 @@ class Comments extends Component {
         {
             this.state?.data?.comments?.length >= 1 ? //si data tiene la propiedad comments renderizame la flatlist
             <View>
-            <Text>¡Agrega tu comment!</Text>
-            <FlatList
+            <Text style={styles.text}>¡Agrega tu comment!</Text>
+            <FlatList style={styles.flat}
             data={ this.state.data.comments.sort((a,b) => a.createdAt - b.createdAt).reverse()} //sort ordena de menor a mayor los elementos de un arrya, array que recorre los comments :)
             keyExtractor={ item => item.createdAt.toString() }
             renderItem={({item}) => <Text>{item.owner} : {item.comments}</Text>} //RENDERIZA UN COMPONENTE POST que le paso a traves de la prop data toda la info que se guarda en items (data sale del push de doc.data
@@ -102,13 +102,10 @@ const styles =StyleSheet.create ({
     input: {
         height: 60, 
         borderWidth: 1, 
-        margin: 10,
+        margin: 20,
         borderRadius: 10,
         textAlign:'center',
-        backgroundColor:`#d2b48c`,
-
-
-
+        backgroundColor:`#dcdcdc`,
 
 
     },
@@ -116,31 +113,22 @@ const styles =StyleSheet.create ({
         padding:10,
         borderWidth: 2,
         borderRadius:10,
-        backgroundColor:`#66cdaa`,
+        backgroundColor:`#8fbc8f`,
         textAlign:'center',
-        borderColor:'black',
         margin: 10
 
-        
-        
     }, 
-    backHome: {
-        padding:10,
-        margin: 5,
-        borderColor:'black',
-        borderWidth: 2,
-        borderRadius:20,
-        backgroundColor:'#dc143c',
-        textAlign:'center',
+    text:{
+        color:'black',
+        marginTop:20,
+        fontSize: 36,
+        alignSelf: 'center'
+
+    },
+    flat: {
+        margin: 30
     }
+   
 })
 
 export default Comments; 
-
-
-/*componentDidMount() {
-        this.setState({
-            id: this.props.route.params.postId,
-            comments: this.props.route.params.postData.comments,
-        }, console.log(this.state))    
-    } */

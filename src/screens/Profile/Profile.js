@@ -90,6 +90,9 @@ class Profile extends Component {
 
         
         <View style={styles.container}>
+
+                <Text style={styles.text}>You're Profile</Text>
+
             
             <Text>{this.state.infoUser[0]?.data?.nombreUsuario}</Text>
             <Text>{auth.currentUser.email}</Text>
@@ -98,6 +101,7 @@ class Profile extends Component {
             <Image style={styles.image} 
                          source={{uri:this.state.infoUser[0]?.data?.profileImage}}
                          resizeMode='contain'/>
+
             
                   
             <TouchableOpacity onPress={ () => this.signOut()} style={styles.button}>
@@ -132,16 +136,22 @@ const styles = StyleSheet.create({
         textAlign:'center',
     },
     image: {
-        height: 80,
-        width: 80,
-        borderRadius:400000000,
-      },
+      height: 80,
+      width: 80,
+      borderRadius:400000000,
+    },
     container:{
         flex:1,
         justifyContent:'center',
         alignItems:'center'
       },
-   
+      text:{
+        color:'black',
+        marginTop:20,
+        fontSize: 36,
+
+    },
+
     
 })
 

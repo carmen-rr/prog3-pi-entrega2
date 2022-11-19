@@ -90,6 +90,7 @@ const styles =StyleSheet.create ({
         margin: 5,
         borderRadius: 10,
         textAlign:'center',
+        backgroundColor: '#dcdcdc', 
 
 
 
@@ -97,14 +98,14 @@ const styles =StyleSheet.create ({
     },
     button: {
         padding:10,
-        borderColor:`#5f9ea0`,
         borderWidth: 2,
-        borderRadius:20,
-        backgroundColor:`#5f9ea0`,
+        borderRadius:10,
+        backgroundColor:`#8fbc8f`,
         textAlign:'center',
-        
-        
-    }
+        margin: 10
+
+    },
+    
 })
 
 export default Post; 

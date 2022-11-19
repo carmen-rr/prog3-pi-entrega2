@@ -38,7 +38,7 @@ class Home extends Component {
     render () {
     return (
         <View style={styles.container1}>
-            <Text>Welcome Home</Text>
+            <Text style={styles.text}>Welcome Home</Text>
 
             <FlatList
                 data={ this.state.allPosts }
@@ -65,6 +65,13 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center'
       },
+      text:{
+        color:'black',
+        marginTop:20,
+        fontSize: 36,
+        margin: 15
+
+    },
 
     }
 )

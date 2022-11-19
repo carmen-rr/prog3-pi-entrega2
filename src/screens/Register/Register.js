@@ -107,13 +107,13 @@ if (nombreUsuario.length > 3 ){
                 </TouchableOpacity>
 
                     <TouchableOpacity onPress={()=> this.registraUsuario(this.state.email , this.state.password, this.state.nombreUsuario, this.state.biografia)}  style={styles.to}>
-                        <Text style={styles.text}>Registrarme</Text>
+                        <Text >Registrarme</Text>
                     </TouchableOpacity>
                 </View>
                 <View>
                     <Text  style={styles.text1}>Ya tienes una cuenta?</Text>
                     <TouchableOpacity onPress={()=>{this.props.navigation.navigate('Login')}}  style={styles.to}>
-                        <Text  style={styles.text}>Logueate</Text>
+                        <Text  >Logueate</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -131,12 +131,14 @@ const styles = StyleSheet.create({
         borderRadius:20,
         borderColor:'black',
         padding:10,
-        margin:10
+        margin:10, 
+        backgroundColor: '#d3d3d3',
+
     },
     to:{
         width:200,
         height:50,
-        backgroundColor:'deepskyblue',
+        backgroundColor:'#2e8b57',
         textAlign:'center',
         borderRadius:40,
         alignItems:'center',
@@ -145,17 +147,20 @@ const styles = StyleSheet.create({
     },
     container:{
         flex:1,
-        backgroundColor:'orange',
+        backgroundColor:'#8fbc8f',
         alignItems:'center',
         marginTop:35
     },
     text:{
         color:'black',
         marginTop:20,
+        fontSize: 36,
+
     },
     text1:{
         textAlign:'center',
-        margin:10
+        margin:10, 
+
     }
 })
 

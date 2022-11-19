@@ -35,6 +35,7 @@ class Login extends Component{
         return ( 
             this.state.validacionCompleta ?      
                 <View style={styles.container}>
+                
                 <Text style={styles.text}>Login</Text>
                 <TextInput
                     style={styles.input}
@@ -53,6 +54,7 @@ class Login extends Component{
                     secureTextEntry={true}
                 />
                 
+
                 <Text>{this.state.mensajeError}</Text>
 
                 <View>
@@ -77,6 +79,7 @@ class Login extends Component{
 }
 
 const styles = StyleSheet.create({
+    
     input:{
         borderWidth:2,
         height:40,
@@ -84,27 +87,35 @@ const styles = StyleSheet.create({
         borderRadius:20,
         borderColor:'black',
         padding:10,
-        margin:10
+        margin:30, 
+        fontSize: 16,
+        backgroundColor: '#d3d3d3',
+
     },
     to:{
         width:200,
-        height:50,
-        backgroundColor:'deepskyblue',
+        height:80,
+        backgroundColor:'#add8e6',
         textAlign:'center',
         borderRadius:40,
         alignItems:'center',
         justifyContent:'center',
-        marginTop:10
+        marginTop:60, 
+
     },
     container:{
         flex:1,
-        backgroundColor:'orange',
+        backgroundColor:'#5f9ea0',
         alignItems:'center',
-        marginTop:35
+        marginTop:35,
+
+
     },
     text:{
         color:'black',
         marginTop:20,
+        fontSize: 36,
+
     },
     activityContainer:{
         justifyContent:'center',

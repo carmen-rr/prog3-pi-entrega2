@@ -57,6 +57,9 @@ render() {
       
       
       <View style={styles.container}>
+
+                <Text style={styles.text}>{this.state.infoUser[0]?.data?.nombreUsuario}'s Profile</Text>
+
             
             <Text>{this.state.infoUser[0]?.data?.nombreUsuario}</Text>
             <Text>{this.props.route.params.params.email}</Text>
@@ -101,6 +104,12 @@ const styles = StyleSheet.create({
       justifyContent:'center',
       alignItems:'center'
     },
+    text:{
+      color:'black',
+      marginTop:20,
+      fontSize: 36,
+
+  },
  
   
 })
