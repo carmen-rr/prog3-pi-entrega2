@@ -8,6 +8,8 @@ import Register from '../screens/Register/Register';
 import Comments from '../screens/Comments/Comments'
 import Profile from '../screens/Profile/Profile'
 import Home from '../screens/Home/Home'
+import Post from '../screens/Post/Post'
+import MenuNav from '../screens/MenuNav/MenuNav';
 
 import TabNavigation from './TabNavigation';
 
@@ -47,6 +49,20 @@ function MainNavigation(){
           { <Stack.Screen 
           name='Profile' 
           component={Profile}
+          options={{
+            headerShown: false
+          }}
+          />}
+           { <Stack.Screen 
+          name='Post' 
+          component={Post}
+          options={{
+            headerShown: false
+          }}
+          />}
+          { <Stack.Screen 
+          name='MenuNav' 
+          component={MenuNav}
           options={{
             headerShown: false
           }}

@@ -52,7 +52,7 @@ class Camara extends Component {
 
 
     rechazarImagen(){
-
+        this.props.navigation.navigate('Post')
     }
 
 

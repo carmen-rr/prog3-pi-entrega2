@@ -47,7 +47,7 @@ class Post extends Component {
             {
                  
                     this.state.mostrarCamara ? 
-                 <Camara cuandoSubaLaImagen= {(url) => this.cuandoSubaLaImagen(url)}/> 
+                 <Camara navigation={this.props.navigation}  cuandoSubaLaImagen= {(url) => this.cuandoSubaLaImagen(url)}/> 
                     
                     : 
               
