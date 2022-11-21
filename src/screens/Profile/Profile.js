@@ -20,17 +20,14 @@ class Profile extends Component {
         this.props.navigation.navigate('Login')
     }
 
-   /* eliminar(){
-        db.collection('users').doc
-        .delete(
-
-        ).then(()=> 
-        this.props.navigation.navigate('Register'))
-        
-    }*/
-
- 
-    componentDidMount(){
+    eliminar(){
+      db.collection('users')
+      .doc(this.state.infoUser[0].id)
+      .delete().then(()=> 
+      this.props.navigation.navigate('Register'))
+  }
+    
+  componentDidMount(){
         db.collection('posts').where('owner', '==', auth.currentUser.email).onSnapshot(docs => {
           let posts = []
           docs.forEach(doc => {
@@ -86,6 +83,7 @@ class Profile extends Component {
     
     
     render () {
+      console.log(this.state.allPosts)
     return (
 
         
@@ -108,9 +106,9 @@ class Profile extends Component {
                 <Text>Cerrar sesión</Text>
             </TouchableOpacity>
 
-           {/* <TouchableOpacity onPress={ () => this.eliminar()} style={styles.button}>
+           <TouchableOpacity onPress={ () => this.eliminar()} style={styles.button}>
                 <Text>Eliminar perfil</Text>
-    </TouchableOpacity>*/}
+           </TouchableOpacity>
 
             <FlatList
                 data={ this.state.allPosts }
