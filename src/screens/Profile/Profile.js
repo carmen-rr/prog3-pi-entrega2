@@ -23,7 +23,8 @@ class Profile extends Component {
     eliminar(){
       db.collection('users')
       .doc(this.state.infoUser[0].id)
-      .delete().then(()=> 
+      .delete().then(()=> auth.currentUser.delete())
+      .then(()=> 
       this.props.navigation.navigate('Register'))
   }
     
