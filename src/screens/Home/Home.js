@@ -14,9 +14,6 @@ class Home extends Component {
         }
     }
 
-    //obteniendo los comentarios 
-
-    
     componentDidMount(){
         db.collection('posts').orderBy('createdAt', 'desc').onSnapshot(docs => {
         let posts = []
@@ -33,7 +30,6 @@ class Home extends Component {
          
         })
     }
-//paso componente posts al flatlist
 
     render () {
     return (
@@ -43,7 +39,7 @@ class Home extends Component {
             <FlatList
                 data={ this.state.allPosts }
                 keyExtractor={ item => item.id.toString() }
-                renderItem={({item}) => <OnePost navigation={this.props.navigation} data={item.data} id={item.id}/>} //RENDERIZA UN COMPONENTE POST que le paso a traves de la prop data toda la info que se guarda en items (data sale del push de doc.data
+                renderItem={({item}) => <OnePost navigation={this.props.navigation} data={item.data} id={item.id}/>} //RENDERIZA UN COMPONENTE POST que le paso a traves de la prop data toda la info que se guarda en items (data sale del push de doc.data)
             />  
         
         </View>
@@ -70,9 +66,7 @@ const styles = StyleSheet.create({
         marginTop:20,
         fontSize: 36,
         margin: 15
-
     },
-
     }
 )
 

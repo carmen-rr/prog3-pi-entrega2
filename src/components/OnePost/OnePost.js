@@ -12,11 +12,11 @@ class OnePost extends Component {
     constructor(props){
         super(props)
         this.state = {
-         likesCantidad : props.data.likes.length, //length para tener la cantidad total NO SE PORQUE NO ME LO LEE!!!!!!
-         commentsCantidad : props.data.comments.length, //length para tener la cantidad total 
-           isMyLike: false, 
-           comments: props.data.comments,
-        
+            likesCantidad : props.data.likes.length, //length para tener la cantidad total
+            commentsCantidad : props.data.comments.length, //length para tener la cantidad total 
+            isMyLike: false, 
+            comments: props.data.comments,
+            
             perfilRedirect: 'FriendProfile'
         }
 
@@ -39,7 +39,7 @@ class OnePost extends Component {
     }
     
 
-    //CUANDO VOY A FIREBASE ME TIENE QUE DECIR QUIEN LIKEO Y QUIEN DISLIKEO
+    //en firebase me dice quien likeo y quien dislikeo
 
     like(){
 
@@ -130,9 +130,9 @@ class OnePost extends Component {
                 </View>
     
                 <FlatList
-                data={ this.state.comments.slice(0,4)}
+                data={ this.state.comments} //.slice(0,4)
                 keyExtractor={ item => item.comments.toString() }
-                renderItem={({item}) => <Text> {item.comments}</Text>} //RENDERIZA UN COMPONENTE POST que le paso a traves de la prop data toda la info que se guarda en items (data sale del push de doc.data
+                renderItem={({item}) => <Text> {item.comments}</Text>} 
             /> 
                 
             </View>

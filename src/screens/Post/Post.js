@@ -1,11 +1,10 @@
 import React, {Component} from "react";
-import {db, auth} from '../../firebase/config'
+import {db, auth} from '../../firebase/config' //importo db 
 import  {View, Text, TextInput, TouchableOpacity, StyleSheet} from 'react-native'; 
 
 import firebase from "firebase";
 
 import Camara from "../../components/Camara/Camara"; //importando el componente de camara 
-import OnePost from "../../components/OnePost/onePost";
 
 
 class Post extends Component {
@@ -19,8 +18,8 @@ class Post extends Component {
     }
 
     //creando posteos en una coleccion de firebase
-    enviarPost(description){
-        db.collection('posts').add({
+    enviarPost(description){ 
+        db.collection('posts').add({ //coleccion de posts en la que queremos guardar documentos
             owner:auth.currentUser.email,
             createdAt: Date.now(),
             description: description,
@@ -28,9 +27,10 @@ class Post extends Component {
             likes: [], 
             foto: this.state.fotoUrl
         })
-        .then(()=> (this.setState({textoDescriptivo: '', 
-        mostrarCamara: true, //para que vuelva a posts desde sacar foto ;)
-        fotoUri: '',}))) 
+        .then(()=> (this.setState({
+            textoDescriptivo: '', 
+            mostrarCamara: true, //para que vuelva a posts desde sacar foto ;)
+            fotoUri: '',}))) 
         .catch(err => console.log(err))
    
     }
@@ -42,18 +42,15 @@ class Post extends Component {
     }
 
 
-
     render () {
     return (
         <View style={styles.container}>
             {
-                 
                     this.state.mostrarCamara ? 
                  <Camara navigation={this.props.navigation}  cuandoSubaLaImagen= {(url) => this.cuandoSubaLaImagen(url)}/> 
-                    
-                    : 
-              
                 
+                    : 
+    
                 <View>
 
             <TextInput 
@@ -68,12 +65,8 @@ class Post extends Component {
                     <Text>Enviar mi nueva publicación</Text>
                 </TouchableOpacity>
 
-
                 </View>
-
-            }
-
-           
+            } 
         </View>
     )
     }
@@ -91,10 +84,6 @@ const styles =StyleSheet.create ({
         borderRadius: 10,
         textAlign:'center',
         backgroundColor: '#dcdcdc', 
-
-
-
-
     },
     button: {
         padding:10,
@@ -103,7 +92,6 @@ const styles =StyleSheet.create ({
         backgroundColor:`#8fbc8f`,
         textAlign:'center',
         margin: 10
-
     },
     
 })
