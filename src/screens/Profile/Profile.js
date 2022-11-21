@@ -21,11 +21,12 @@ class Profile extends Component {
     }
 
     eliminar(){
-      db.collection('users')
+      db.collection('user')
       .doc(this.state.infoUser[0].id)
-      .delete().then(()=> auth.currentUser.delete())
-      .then(()=> 
-      this.props.navigation.navigate('Register'))
+      .delete().then(()=>console.log('hizo el delete'))
+      .then(()=> auth.currentUser.delete())
+      .then(()=> this.props.navigation.navigate('Login'))
+      .catch((e)=>console.log(e))
   }
     
   componentDidMount(){
@@ -57,7 +58,9 @@ class Profile extends Component {
           this.setState({
             infoUser: users,
           },
-          () => console.log(this.state.infoUser)
+          () => {console.log(this.state.infoUser)
+                 console.log('este es el perfil')
+          }
           )
         })
         
