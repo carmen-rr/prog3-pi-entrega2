@@ -55,8 +55,6 @@ class OnePost extends Component {
         }))
         .catch(err => console.log(err))
 
-
-
     }
 
     unlike(){
