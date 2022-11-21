@@ -62,7 +62,7 @@ class Post extends Component {
             /> 
 
                 <TouchableOpacity onPress={()=> this.enviarPost(this.state.textoDescriptivo) }  style={styles.button}>
-                    <Text>Enviar mi nueva publicación</Text>
+                    <Text style={styles.bold}>Enviar mi nueva publicación</Text>
                 </TouchableOpacity>
 
                 </View>
@@ -89,10 +89,15 @@ const styles =StyleSheet.create ({
         padding:10,
         borderWidth: 2,
         borderRadius:10,
-        backgroundColor:`#8fbc8f`,
+        backgroundColor:`#9370db`,
         textAlign:'center',
-        margin: 10
+        margin: 10, 
+        
     },
+    bold:{
+        fontWeight: 'bold'
+
+    }
     
 })
 

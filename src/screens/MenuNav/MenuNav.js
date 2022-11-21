@@ -34,7 +34,7 @@ class MenuNav extends Component {
     }
     render() {
         return (
-            <View>
+            <View style={styles.container}>
                 <TextInput
                     style={styles.input}
                     keyboardType='default'
@@ -43,7 +43,7 @@ class MenuNav extends Component {
                     value={this.state.busqueda}
                 />
                     <TouchableOpacity onSubmit={(event)=>this.evitarSubmit(event)} style={styles.to}>
-                        <Text>Search</Text>
+                        <Text style={styles.bold}>Search</Text>
                     </TouchableOpacity>
               {/*  <FlatList
                 data={ this.state.tendrianQueSerLosUsersQueFiltro }
@@ -55,6 +55,12 @@ class MenuNav extends Component {
         }
        }
        const styles = StyleSheet.create({
+        container:{
+            flex:1,
+            justifyContent:'center',
+            alignItems:'center', 
+            backgroundColor: '#8fbc8f', 
+          },
         input:{
             borderWidth:2,
             height:40,
@@ -64,16 +70,23 @@ class MenuNav extends Component {
             padding:10,
             margin:10
         },
-       to:{
-        width:200,
-        height:50,
-        margin: 5,
-        backgroundColor:'deepskyblue',
-        textAlign:'center',
-        borderRadius:40,
-        alignItems:'center',
-        justifyContent:'center',
-        marginTop:10
-    },
+        to:{
+            width:200,
+            height:50,
+            margin: 5,
+            backgroundColor:'#9370db',
+            textAlign:'center',
+            borderRadius:40,
+            alignItems:'center',
+            justifyContent:'center',
+            marginTop:10, 
+            borderColor:'black',
+            borderWidth:2,
+        
+        },
+        bold:{
+            fontWeight: 'bold'
+    
+        }
 })
     export default MenuNav

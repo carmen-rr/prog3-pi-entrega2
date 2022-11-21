@@ -95,7 +95,6 @@ class Profile extends Component {
 
                 <Text style={styles.text}>You're Profile</Text>
 
-            
             <Text>{this.state.infoUser[0]?.data?.nombreUsuario}</Text>
             <Text>{auth.currentUser.email}</Text>
             <Text>{this.state.infoUser[0]?.data?.biografia}</Text>
@@ -129,6 +128,7 @@ class Profile extends Component {
 }
 
 const styles = StyleSheet.create({
+
     button:{
         padding:10,
         borderColor:'black',
@@ -136,6 +136,7 @@ const styles = StyleSheet.create({
         borderRadius:20,
         backgroundColor:'#dc143c',
         textAlign:'center',
+        margin: 5
     },
     image: {
       height: 80,
@@ -145,12 +146,15 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center', 
+        backgroundColor: '#8fbc8f', 
       },
       text:{
         color:'black',
         marginTop:20,
         fontSize: 36,
+        fontWeight: 'bold'
+
 
     },
 

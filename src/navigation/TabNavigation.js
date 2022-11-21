@@ -18,7 +18,7 @@ export default function TabNavigation() {
     return (
         <Tab.Navigator>
             <Tab.Screen 
-            name='HomeNavigation' 
+            name='Home' 
             component={HomeNavigation}
             options ={{
                 tabBarIcon : () => <FontAwesome5 name='home' size={28} color='#2e8b57' />

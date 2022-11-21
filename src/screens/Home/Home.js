@@ -48,24 +48,20 @@ class Home extends Component {
 }
 
 const styles = StyleSheet.create({
-    button:{
-        padding:10,
-        borderColor:'black',
-        borderWidth: 2,
-        borderRadius:20,
-        backgroundColor:'#dc143c',
-        textAlign:'center',
-    }, 
+     
     container1:{
         flex:1,
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        backgroundColor: '#8fbc8f'
       },
       text:{
         color:'black',
         marginTop:20,
         fontSize: 36,
-        margin: 15
+        margin: 15, 
+        fontWeight: 'bold'
+
     },
     }
 )

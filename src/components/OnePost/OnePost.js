@@ -80,7 +80,7 @@ class OnePost extends Component {
         return (
             <View style={styles.container}>
 
-                <View style={styles.profileName}>
+                <View>
                     <TouchableOpacity onPress={ ()=> this.props.navigation.navigate(
                         this.state.perfilRedirect, 
                         {
@@ -89,7 +89,7 @@ class OnePost extends Component {
                             }
                         }
                         )}>
-                        <Text>Creator: {this.props.data.owner}</Text>
+                        <Text style={styles.bold}>Creator: {this.props.data.owner}</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -98,20 +98,24 @@ class OnePost extends Component {
                          source={{uri:this.props.data.foto}}
                          resizeMode='contain'/>
 
+                 <View style={styles.container2}>
+
                 <Text>{this.props.data.description}</Text>
-                <View>
+
+                <View >
                     <Text>{this.state.likesCantidad}</Text>
                 {
                     this.state.isMyLike ?
+                
                     
                 <TouchableOpacity onPress={()=> this.unlike()}>
-                    <FontAwesome name='paw' color='#c71585' size={25}/>
+                    <FontAwesome name='paw' color='#8b008b' size={35}/>
                 </TouchableOpacity>
     
                 :
     
                 <TouchableOpacity onPress={()=> this.like()}>
-                    <Ionicons name="paw-outline" size={25} color="#c71585" />
+                    <Ionicons name="paw-outline" size={35} color="#8b008b"  />
                 </TouchableOpacity>
                     
                 }
@@ -121,10 +125,11 @@ class OnePost extends Component {
                 <Text>Cantidad de comments : {this.state.commentsCantidad}</Text>
                 {/*touchable opacity que se encarga de hacer la navegacion, este ya tiene las props de navegacion que trae de home */}
                     <TouchableOpacity onPress={ ()=> this.props.navigation.navigate('Comments', {postData: this.props.data, postId: this.props.id})} style={styles.button}>
-                        <Text>Agregar comment</Text>
+                        <Text style={styles.bold}>Agregar comment</Text>
                     </TouchableOpacity>
 
-               
+                </View>
+
                 </View>
     
                 <FlatList
@@ -140,22 +145,26 @@ class OnePost extends Component {
 
     const styles = StyleSheet.create({
         container: {
-            backgroundColor: '#8fbc8f',
-             margin: 5,
-              borderRadius: 10,
-              padding: 5, 
+            backgroundColor: '#d3d3d3',
+            margin: 5,
+            borderRadius: 20,
+            padding: 10, 
+            width: 520, 
+            borderColor: '#4b0082',
 
 
         },
-        profileName: {
-            fontWeight: 'bold',
-
+        container2: {
+            backgroundColor: '#f8f8ff',
+            borderRadius: 10,
+            margin: 5,
         },
-
+       
         image: {
-         height: 400,
-         width: 400, 
-         alignItems: 'center',
+            borderColor: "black",
+            borderRadius: 20,
+            borderWidth: 5,
+            height: 400,
 
        },
        button: {
@@ -171,6 +180,12 @@ class OnePost extends Component {
 
 
        }, 
+       bold:{
+        fontWeight: 'bold', 
+        fontSize: 15,
+        color: '#4b0082'
+
+    }
       
      })
 

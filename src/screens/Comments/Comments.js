@@ -54,7 +54,7 @@ class Comments extends Component {
         console.log(this.state)
         console.log(this.state?.data?.comments?.length) //estos signos que se le ponen a la ultima propiedad quieren decir que este dato puede estar o no pero si no estan no rompen 
     return (
-        <View>
+        <View style={styles.container1}>
           
         {
             this.state?.data?.comments?.length >= 1 ? //si data tiene la propiedad comments renderizame la flatlist
@@ -66,7 +66,7 @@ class Comments extends Component {
             renderItem={({item}) => <Text>{item.owner} : {item.comments}</Text>} //informacion que tiene del post que le paso a traves de la prop data toda la info que se guarda en items (data sale del push de doc.data)
         />
         </View>
-        : <Text>¡Aún no hay comentarios. Sé el primero en opinar!</Text>
+        : <Text style={styles.text}>¡Aún no hay comentarios. Sé el primero en opinar!</Text>
     }
             
 
@@ -79,7 +79,7 @@ class Comments extends Component {
             /> 
 
                 <TouchableOpacity onPress={()=> this.sendComment(this.state.comments, this.state.id) }  style={styles.button}>
-                    <Text>Enviar mi comentario</Text>
+                    <Text style={styles.bold} >Enviar mi comentario</Text>
                 </TouchableOpacity>
 
                 
@@ -90,6 +90,10 @@ class Comments extends Component {
 
 
 const styles =StyleSheet.create ({
+    container1:{
+        backgroundColor: '#8fbc8f', 
+        flex: 1
+      },
     input: {
         height: 60, 
         borderWidth: 1, 
@@ -104,9 +108,10 @@ const styles =StyleSheet.create ({
         padding:10,
         borderWidth: 2,
         borderRadius:10,
-        backgroundColor:`#8fbc8f`,
+        backgroundColor:`#9370db`,
         textAlign:'center',
-        margin: 10
+        margin: 20,
+        fontWeight: 'bold'
 
     }, 
     text:{
@@ -118,6 +123,10 @@ const styles =StyleSheet.create ({
     },
     flat: {
         margin: 30
+    }, 
+    bold:{
+        fontWeight: 'bold'
+
     }
    
 })
