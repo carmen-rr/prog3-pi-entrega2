@@ -37,7 +37,7 @@ class Post extends Component {
     cuandoSubaLaImagen(url){
         this.setState({
             mostrarCamara:false,
-            fotoUrl: url
+            fotoUrl: url //url que nos llega por parametro
         })
     }
 
@@ -58,7 +58,7 @@ class Post extends Component {
                 placeholder='Escribe tu texto descriptivo...'
                 onChangeText={text => this.setState({textoDescriptivo: text})} //cambia el estado del comentario
                 style={styles.input}
-                value={this.state.textoDescriptivo}
+                value={this.state.textoDescriptivo} //muestra el texto 
             /> 
 
                 <TouchableOpacity onPress={()=> this.enviarPost(this.state.textoDescriptivo) }  style={styles.button}>

@@ -5,7 +5,6 @@ import { Ionicons } from '@expo/vector-icons';
 import {db, auth} from '../../firebase/config'
 
 import firebase from "firebase"; //modulo
-import Camara from "../Camara/Camara";
 
 
 class OnePost extends Component {
@@ -100,7 +99,7 @@ class OnePost extends Component {
 
                  <View style={styles.container2}>
 
-                <Text>{this.props.data.description}</Text>
+                    <Text>{this.props.data.description}</Text>
 
                 <View >
                     <Text>{this.state.likesCantidad}</Text>
@@ -122,7 +121,7 @@ class OnePost extends Component {
                 </View>
               
                 <View>
-                <Text>Cantidad de comments : {this.state.commentsCantidad}</Text>
+                    <Text>Cantidad de comments : {this.state.commentsCantidad}</Text>
                 {/*touchable opacity que se encarga de hacer la navegacion, este ya tiene las props de navegacion que trae de home */}
                     <TouchableOpacity onPress={ ()=> this.props.navigation.navigate('Comments', {postData: this.props.data, postId: this.props.id})} style={styles.button}>
                         <Text style={styles.bold}>Agregar comment</Text>
@@ -132,11 +131,11 @@ class OnePost extends Component {
 
                 </View>
     
-                <FlatList
-                data={ this.state.comments} //.slice(0,4)
-                keyExtractor={ item => item.comments.toString() }
-                renderItem={({item}) => <Text> {item.comments}</Text>} 
-            /> 
+                    <FlatList
+                    data={ this.state.comments} //.slice(0,4)
+                    keyExtractor={ item => item.comments.toString() }
+                    renderItem={({item}) => <Text> {item.comments}</Text>} 
+                    /> 
                 
             </View>
         )
