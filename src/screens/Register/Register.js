@@ -53,7 +53,7 @@ if (nombreUsuario.length > 3 ){
           profileImage: this.state.profileImage
         })
     )
-        .then(resp => {this.props.navigation.navigate('Home')})
+        .then(resp => {this.props.navigation.navigate('TabNavigation')})
         .catch(err => this.setState({mensajeError: err.message}))
 
     }else{
