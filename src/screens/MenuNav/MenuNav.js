@@ -12,6 +12,7 @@ class MenuNav extends Component {
     this.state ={
         infoUser: [],
         filtrado: [],
+        perfilRedirect: 'FriendProfile'
        
         };
     }
@@ -101,7 +102,21 @@ class MenuNav extends Component {
                         data={this.state.filtrado}
                         keyExtractor={item => item.id.toString()}
                         renderItem={({ item }) => 
-                            <Text> {item.data.owner} ({item.data.nombreUsuario})</Text>} //RENDERIZA UN COMPONENTE POST que le paso a traves de la prop data toda la info que se guarda en items (data sale del push de doc.data
+                            
+                        <TouchableOpacity onPress={ ()=> this.props.navigation.navigate(
+                            this.state.perfilRedirect, 
+                            {
+                                params:{
+                                    email: item.data.owner
+                                }
+                            }
+                            )}>
+                            <Text> {item.data.owner} ({item.data.nombreUsuario})</Text>
+                        </TouchableOpacity>
+                    
+                    } 
+                            
+                    
                     />
             
             </View>
