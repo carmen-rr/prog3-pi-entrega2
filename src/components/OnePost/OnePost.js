@@ -132,7 +132,7 @@ class OnePost extends Component {
                 </View>
     
                     <FlatList
-                    data={ this.state.comments} //.slice(0,4)
+                    data={ this.state.comments.slice(0,4)}
                     keyExtractor={ item => item.comments.toString() }
                     renderItem={({item}) => <Text> {item.comments}</Text>} 
                     /> 
